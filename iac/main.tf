@@ -14,13 +14,12 @@ provider "clevercloud" {
 
 resource "clevercloud_fsbucket" "fs_filebrowser_01" {
   name   = "fs-filebrowser-01"
-  region = "par"
-  
+  region = var.region
 }
 
 resource "clevercloud_java_war" "spring_filebrowser_01" {
   name                = "spring-filebrowser-01"
-  region              = "par"
+  region              = var.region
   min_instance_count  = 1
   max_instance_count  = 1
   smallest_flavor     = "XS"
@@ -35,14 +34,14 @@ resource "clevercloud_java_war" "spring_filebrowser_01" {
   environment = {
     CC_JAVA_VERSION        = "21"
     MAVEN_DEPLOY_GOAL      = "spring-boot:run"
-    FILES_PATH            = "/files"
-    CC_FS_BUCKET           = "${FILES_PATH}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
+    FILES_PATH             = var.files_path
+    CC_FS_BUCKET           = "${var.files_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
   }
 }
 
 resource "clevercloud_java_war" "spring_filebrowser_02" {
   name                = "spring-filebrowser-02"
-  region              = "par"
+  region              = var.region
   min_instance_count  = 1
   max_instance_count  = 1
   smallest_flavor     = "XS"
@@ -57,7 +56,8 @@ resource "clevercloud_java_war" "spring_filebrowser_02" {
   environment = {
     CC_JAVA_VERSION        = "21"
     MAVEN_DEPLOY_GOAL      = "spring-boot:run"
-    FILES_PATH            = "/files"
-    CC_FS_BUCKET           = "${FILES_PATH}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
+    FILES_PATH             = var.files_path
+    CC_FS_BUCKET           = "${var.files_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
   }
 }
+

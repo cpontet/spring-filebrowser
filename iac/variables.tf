@@ -3,3 +3,15 @@ variable "organization_id" {
   type        = string
   sensitive   = true
 }
+
+variable "region" {
+  description = "Clever Cloud region to deploy resources."
+  type        = string
+  default     = "par"
+}
+
+variable "files_path" {
+  description = "Path to files directory."
+  type        = string
+  default     = "/files"
+}
