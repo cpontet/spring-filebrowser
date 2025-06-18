@@ -23,7 +23,7 @@ public class FileBrowserController {
     public FileBrowserController(FileService fileService) {
         this.fileService = fileService;
         // Use FILES_PATH env variable if present, else default to "."
-        this.baseDir = Optional.ofNullable(System.getenv("FILES_PATH")).orElse(".");
+        this.baseDir = Optional.ofNullable(System.getenv("FILES_PATH")).orElse("./myfiles");
     }
 
     @GetMapping("/")
