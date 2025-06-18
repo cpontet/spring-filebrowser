@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>File Browser</title>
+    <meta http-equiv="refresh" th:if="${created}" content="1">
+</head>
+<body>
+<h1>File Browser</h1>
+<p>Current Directory: <span th:text="${currentDir}"></span></p>
+<button onclick="window.location.reload();">Refresh</button>
+<ul>
+    <li th:each="file : ${files}" th:text="${file}"></li>
+</ul>
+<form th:action="@{/create}" method="post">
+    <input type="hidden" name="dir" th:value="${currentDir}" />
+    <input type="text" name="filename" placeholder="New file name" required />
+    <button type="submit">Create File</button>
+</form>
+</body>
+</html>
