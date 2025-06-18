@@ -1,5 +1,6 @@
 package eu.europa.ec.op.spring_file_browser;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +27,13 @@ public class FileBrowserController {
     }
 
     @GetMapping("/")
-    public String listFiles(@RequestParam(value = "dir", required = false) String dir, Model model) {
+    public String listFiles(@RequestParam(value = "dir", required = false) String dir, Model model, HttpServletRequest request) {
         String effectiveDir = (dir == null || dir.isEmpty()) ? baseDir : dir;
         List<String> files = fileService.listFiles(effectiveDir);
         model.addAttribute("files", files);
         model.addAttribute("currentDir", effectiveDir);
+        String host = request.getServerName();
+        model.addAttribute("hostName", host);
         return "browser";
     }
 
