@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,9 +30,13 @@ public class FileBrowserController {
     @GetMapping("/")
     public String listFiles(@RequestParam(value = "dir", required = false) String dir, Model model, HttpServletRequest request) {
         String effectiveDir = (dir == null || dir.isEmpty()) ? baseDir : dir;
+        String userDir = System.getProperty("user.dir");
+        Boolean exists = Files.isDirectory(Paths.get(userDir, effectiveDir));
         List<String> files = fileService.listFiles(effectiveDir);
         model.addAttribute("files", files);
+        model.addAttribute("userDir", userDir);
         model.addAttribute("currentDir", effectiveDir);
+        model.addAttribute("exists", exists);
         String host = request.getServerName();
         model.addAttribute("hostName", host);
         return "browser";

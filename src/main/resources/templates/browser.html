@@ -8,6 +8,8 @@
 <h1>File Browser</h1>
 <p>Host: <span th:text="${hostName}"></span></p>
 <p>Current Directory: <span th:text="${currentDir}"></span></p>
+<p>User Directory: <span th:text="${userDir}"></span></p>
+<p>Directory exists: <span th:text="${exists}"></span></p>
 <button onclick="window.location.reload();">Refresh</button>
 <ul>
     <li th:each="file : ${files}" th:text="${file}"></li>
