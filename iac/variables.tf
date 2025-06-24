@@ -13,5 +13,5 @@ variable "region" {
 variable "files_path" {
   description = "Path to files directory."
   type        = string
-  default     = "/files"
+  default     = "/myfiles"
 }
