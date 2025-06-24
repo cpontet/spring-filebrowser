@@ -10,8 +10,8 @@ variable "region" {
   default     = "par"
 }
 
-variable "files_path" {
+variable "folder_path" {
   description = "Path to files directory."
   type        = string
-  default     = "/myfiles"
+  default     = "/myfolder"
 }

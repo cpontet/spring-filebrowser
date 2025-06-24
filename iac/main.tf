@@ -34,8 +34,8 @@ resource "clevercloud_java_war" "spring_filebrowser_01" {
   environment = {
     CC_JAVA_VERSION        = "21"
     MAVEN_DEPLOY_GOAL      = "spring-boot:run"
-    FILES_PATH             = var.files_path
-    CC_FS_BUCKET           = "${var.files_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
+    FOLDER_PATH             = var.folder_path
+    CC_FS_BUCKET           = "${var.folder_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
   }
   depends_on = [ 
     clevercloud_fsbucket.fs_filebrowser_01 
@@ -59,8 +59,8 @@ resource "clevercloud_java_war" "spring_filebrowser_02" {
   environment = {
     CC_JAVA_VERSION        = "21"
     MAVEN_DEPLOY_GOAL      = "spring-boot:run"
-    FILES_PATH             = var.files_path
-    CC_FS_BUCKET           = "${var.files_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
+    FOLDER_PATH             = var.folder_path
+    CC_FS_BUCKET           = "${var.folder_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
   }
   depends_on = [ 
     clevercloud_fsbucket.fs_filebrowser_01 

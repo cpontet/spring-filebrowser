@@ -23,8 +23,8 @@ public class FileBrowserController {
     @Autowired
     public FileBrowserController(FileService fileService) {
         this.fileService = fileService;
-        // Use FILES_PATH env variable if present, else default to "."
-        this.baseDir = Optional.ofNullable(System.getenv("FILES_PATH")).orElse(".");
+        // Use FOLDER_PATH env variable if present, else default to "."
+        this.baseDir = Optional.ofNullable(System.getenv("FOLDER_PATH")).orElse(".");
     }
 
     @GetMapping("/")
