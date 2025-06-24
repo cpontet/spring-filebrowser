@@ -37,6 +37,9 @@ resource "clevercloud_java_war" "spring_filebrowser_01" {
     FILES_PATH             = var.files_path
     CC_FS_BUCKET           = "${var.files_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
   }
+  depends_on = [ 
+    clevercloud_fsbucket.fs_filebrowser_01 
+  ]
 }
 
 resource "clevercloud_java_war" "spring_filebrowser_02" {
@@ -59,5 +62,8 @@ resource "clevercloud_java_war" "spring_filebrowser_02" {
     FILES_PATH             = var.files_path
     CC_FS_BUCKET           = "${var.files_path}:${clevercloud_fsbucket.fs_filebrowser_01.host}"
   }
+  depends_on = [ 
+    clevercloud_fsbucket.fs_filebrowser_01 
+  ]
 }
 
